@@ -97,13 +97,14 @@
 // PWM for a servo probe
 // Other servo devices are not supported on this board!
 //
-#if HAS_Z_SERVO_PROBE
-  #define SERVO0_PIN       PD13  // Open drain PWM pin on the V0G (GND or floating 5V)
-  #define SERVO0_PWM_OD          // Comment this if using PE5
+#define NUM_SERVOS          1
+//#define SERVO0_TIMER_NUM    8 // Already set to 1 somewhere else
 
-  //#define SERVO0_PIN     PE5   // Pulled up PWM pin on the V08 (3.3V or 0)
-  //#undef Z_MAX_PIN             // Uncomment if using ZMAX connector (PE5)
-#endif
+#define SERVO0_PIN       PD13  // Open drain PWM pin on the V0G (GND or floating 5V)
+#define SERVO0_PWM_OD          // Comment this if using PE5
+
+//#define SERVO0_PIN     PE5   // Pulled up PWM pin on the V08 (3.3V or 0)
+//#undef Z_MAX_PIN             // Uncomment if using ZMAX connector (PE5)
 
 /**
  * Note: Alfawise screens use various TFT controllers. Supported screens

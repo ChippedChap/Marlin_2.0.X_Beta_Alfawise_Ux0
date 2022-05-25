@@ -82,7 +82,11 @@
 
 // Valid platformio.ini submodel values are U20_PLUS U20 U30 LK1 LK2 LK4
 
+#define LK4
+
 // Valid platformio.ini touchscreens are TS_V11 TS_V12 TS_V19
+
+#define TS_V19
 
 // 2 - Select the screen controller type. Most common is ILI9341 - First option. If your screen remains white,
 //     Try the alternate setting - this should enable ST7789V or ILI9328. For other LCDs... code is needed
@@ -162,19 +166,8 @@
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-#ifdef U20
-#define CUSTOM_MACHINE_NAME "Alfawise U20"
-#elif defined(U30)
-#define CUSTOM_MACHINE_NAME "Alfawise U30"
-#elif defined(U20_PLUS)
-#define CUSTOM_MACHINE_NAME "Alfawise U20+"
-#elif defined(LK1)
-#define CUSTOM_MACHINE_NAME "Longer3D LK1"
-#elif defined(LK2)
-#define CUSTOM_MACHINE_NAME "Longer3D LK2"
-#elif defined(LK4)
+
 #define CUSTOM_MACHINE_NAME "Longer3D LK4"
-#endif
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -494,9 +487,9 @@
   // Please refine the PID settings for your own machine to avoid the E1 hotend error. These a basic settings allowing first startups.
   // Use the command M303 E0 S200 C8 each time you make any changes to your extruder
 
-  #define DEFAULT_Kp 17.22
-  #define DEFAULT_Ki 1.00
-  #define DEFAULT_Kd 74.22
+  #define DEFAULT_Kp 27.42
+  #define DEFAULT_Ki 1.90
+  #define DEFAULT_Kd 98.90
 
 
   // MakerGear
@@ -558,9 +551,9 @@
 
 #if defined(U30) || defined(LK2) || defined(LK4)
   //From M303 command for Alfawise U30 :
-  #define DEFAULT_bedKp 338.46
-  #define DEFAULT_bedKi 63.96
-  #define DEFAULT_bedKd 447.78
+  #define DEFAULT_bedKp 96.74
+  #define DEFAULT_bedKi 18.01
+  #define DEFAULT_bedKd 346.43
 #endif
 
 #if defined(U20) || defined(LK1)
@@ -758,14 +751,14 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 98 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 92.6 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 100, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 5, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -1391,8 +1384,8 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (40*60)
-#define HOMING_FEEDRATE_Z  (7*60)
+#define HOMING_FEEDRATE_XY (1500)
+#define HOMING_FEEDRATE_Z  (300)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1643,7 +1636,7 @@
  *
  * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek', 'el-gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'it':'Italian', 'jp-kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt-br':'Portuguese (Brazilian)', 'ru':'Russian', 'sk':'Slovak', 'tr':'Turkish', 'uk':'Ukrainian', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)', 'test':'TEST' }
  */
-#define LCD_LANGUAGE fr
+#define LCD_LANGUAGE en
 
 /**
  * LCD Character Set
@@ -2078,6 +2071,7 @@
 //========================= TouchScreen calibration ===========================
 //=============================================================================
 
+#define TOUCH_SCREEN_CALIBRATION
 #define TOUCH_BUTTONS
 #if ENABLED(TOUCH_BUTTONS)
   #define TOUCH_CALIBRATION // Include user calibration widget in menus (Alfawise)
@@ -2087,18 +2081,18 @@
 
   #if ENABLED(TS_V11)
     // Alfawise U20 ILI9341 2.8 TP Ver 1.1 / Green PCB on the back of touchscreen
-    #define XPT2046_X_CALIBRATION   12000
-    #define XPT2046_Y_CALIBRATION   9000
-    #define XPT2046_X_OFFSET       -24
-    #define XPT2046_Y_OFFSET       -17
+    //#define XPT2046_X_CALIBRATION   12000
+    //#define XPT2046_Y_CALIBRATION   9000
+    //#define XPT2046_X_OFFSET       -24
+    //#define XPT2046_Y_OFFSET       -17
   #endif
 
   #if ENABLED(TS_V12)
     // Alfawise U30 ILI9341 2.8 TP Ver 1.2 / Blue PCB on the back of touchscreen
-    #define XPT2046_X_CALIBRATION   12000
-    #define XPT2046_Y_CALIBRATION  -9000
-    #define XPT2046_X_OFFSET       -43
-    #define XPT2046_Y_OFFSET        257
+    //#define XPT2046_X_CALIBRATION   12000
+    //#define XPT2046_Y_CALIBRATION  -9000
+    //#define XPT2046_X_OFFSET       -43
+    //#define XPT2046_Y_OFFSET        257
   #endif
 
   #if ENABLED(TS_V19)
@@ -2259,7 +2253,7 @@
  * Set this manually if there are extra servos needing manual control.
  * Leave undefined or set to 0 to entirely disable the servo subsystem.
  */
-//#define NUM_SERVOS 3 // Servo index starts with 0 for M280 command
+#define NUM_SERVOS 1 // Servo index starts with 0 for M280 command
 
 // Delay (in milliseconds) before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
