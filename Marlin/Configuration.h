@@ -758,7 +758,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 10, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -1385,7 +1385,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (1500)
-#define HOMING_FEEDRATE_Z  (300)
+#define HOMING_FEEDRATE_Z  (600)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
